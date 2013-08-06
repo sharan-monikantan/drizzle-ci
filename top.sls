@@ -6,5 +6,6 @@ base:
 
 stage:
   '*skunworkers*':
-    - jenkins
+#   - jenkins.ubuntu
+    - jenkins.jenkins_job_builder
     - salt-master
