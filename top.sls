@@ -6,7 +6,7 @@ base:
 
 stage:
   '*skunworkers*':
-#   - drizzle.ubuntu
+    - drizzle
 #   - jenkins.ubuntu
     - jenkins.jenkins_job_builder
     - salt-master

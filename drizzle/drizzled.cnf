@@ -1,0 +1,9 @@
+# ==========================
+# Drizzle configuration file
+# ==========================
+# 
+# This file contains the basic configurations for starting the drizzle client.
+# For more details on writing config files, visit: http://docs.drizzle.org/configuration/options.html#config-files
+#
+# 
+# This is just a skeleton config file. 
