@@ -1,3 +1,3 @@
-sysbench:
+drizzle:
   pkg:
     - installed
