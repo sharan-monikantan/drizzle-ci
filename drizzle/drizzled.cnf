@@ -5,5 +5,22 @@
 # This file contains the basic configurations for starting the drizzle client.
 # For more details on writing config files, visit: http://docs.drizzle.org/configuration/options.html#config-files
 #
-# 
-# This is just a skeleton config file. 
+#
+# ====================
+# Client configuration
+# ====================
+# [client]
+# port      = 4427
+#
+#
+# ====================
+# Server configuration
+# ====================
+# [drizzled]
+# user      = drizzle
+# pid-file  = /var/run/drizzled/drizzled.pid
+# socket    = /var/run/drizzled/drizzled.sock
+# port      = 4427
+# basedir   = /usr
+# datadir   = /var/lib/drizzle
+# tmpdir    = /tmp
