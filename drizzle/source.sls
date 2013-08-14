@@ -20,5 +20,5 @@ source:
 compile:
   cmd:
     - run
-#   - name: 'cd /home/user/drizzle ; ./config/autorun.sh ; ./configure ; make '
+#   - name: cd /home/user/drizzle ; ./config/autorun.sh ; ./configure ; make
     - order: 3
