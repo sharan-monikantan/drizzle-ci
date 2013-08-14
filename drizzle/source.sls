@@ -1,16 +1,4 @@
-stage_1:
-  cmd:
-    - run
-    - name: sudo add-apt-repository ppa:drizzle-developers/ppa
-    - order: 0
-
-stage_2:
-  cmd:
-    - run
-    - name: sudo apt-get update
-    - order: 1
-
-stage_3:
+libraries:
   pkg.installed:
     - pkgs:
       - python-software-properties
@@ -19,16 +7,30 @@ stage_3:
       - make
       - libboost-test-dev
       - libcloog-ppl0
-    - order: 2
+      - autopoint
+      - libmysqlclient-dev
+    - order: 1
 
-fetch_source:
+easy_install:
   cmd:
     - run
-    - name: bzr branch lp:drizzle /home/shar/drizzle
+    - name: sudo easy_install -U distribute
+    - order: 2
+
+mysqldb:
+  cmd:
+    - run
+    - name: sudo pip install MySQL-python
     - order: 3
+
+source:
+  cmd:
+    - run
+#   - name: bzr branch lp:drizzle /home/user/drizzle drizzle-trunk
+    - order: 4
 
 compile:
   cmd:
     - run
-    - name: cd /home/shar/drizzle ; ./config/autorun.sh ; ./configure ; make ; make install
-    - order: 4
+#   - name: cd /home/user/drizzle ; ./config/autorun.sh ; ./configure ; make 
+    - order: 5
