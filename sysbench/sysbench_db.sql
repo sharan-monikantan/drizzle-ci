@@ -9,7 +9,7 @@ CREATE TABLE `bench_config` (
   `config_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`config_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 COLLATE='utf8_general_ci';
 
 /* creating table bench_runs */
 DROP TABLE IF EXISTS `bench_runs`;
@@ -20,7 +20,7 @@ CREATE TABLE `bench_runs` (
   `version` varchar(60) DEFAULT NULL,
   `run_date` datetime NOT NULL,
   PRIMARY KEY (`run_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 COLLATE='utf8_general_ci';
 
 /*  creating table sysbench_run_iterations */
 DROP TABLE IF EXISTS `sysbench_run_iterations`;
@@ -36,4 +36,4 @@ CREATE TABLE `sysbench_run_iterations` (
   `max_req_latency_ms` decimal(10,2) NOT NULL,
   `95p_req_latency_ms` decimal(10,2) NOT NULL,
   PRIMARY KEY (`run_id`,`concurrency`,`iteration`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB COLLATE='utf8_general_ci';
