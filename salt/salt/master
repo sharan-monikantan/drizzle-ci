@@ -251,13 +251,13 @@
 
 file_roots:
   base:
-    - /srv/drizzle-ci-salt
+    - {{ pillar['salt']['file-server-base'] }}
   dev:
-    - /srv/drizzle-ci-salt/dev
+    - {{ pillar['salt']['file-server-dev'] }}
   stage:
-    - /srv/drizzle-ci-salt/stage
+    - {{ pillar['salt']['file-server-stage'] }}
   prod:
-    - /srv/drizzle-ci-salt/prod
+    - {{ pillar['salt']['file-server-prod'] }}
 
 # The hash_type is the hash to use when discovering the hash of a file on
 # the master server, the default is md5, but sha1, sha224, sha256, sha384
@@ -323,7 +323,7 @@ file_roots:
 
 pillar_roots:
   base:
-    - /srv/drizzle-ci-pillar
+    - {{ pillar['salt']['pillar-base-root'] }}
 
 # ext_pillar:
 #   - hiera: /etc/hiera.yaml

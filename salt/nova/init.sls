@@ -6,13 +6,13 @@ novaclient:
 
 nova-credential:
   file.touch:
-    - name: /home/user/nova-credentials
+    - name: {{ pillar['nova']['path'] }}/nova-credentials
     - order: 2
 
 credentials:
   file:
     - managed
-    - name: /home/user/nova-credentials
+    - name: {{ pillar['nova']['path'] }}/nova-credentials
     - source: salt://nova/nova-credentials
     - user: root
     - order: 3
@@ -20,5 +20,5 @@ credentials:
 source:
   cmd:
     - run
-    - name: source /home/user/nova-credentials
+    - name: source {{ pillar['nova']['path'] }}/nova-credentials
     - order: 4

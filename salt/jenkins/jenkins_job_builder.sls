@@ -1,15 +1,15 @@
 git_repo:
    git.latest:
-#   - cwd: /home/user
+    - cwd: {{ pillar['jenkins']['path'] }}
     - name: https://github.com/openstack-infra/jenkins-job-builder.git 
-#   - target: /home/user/jenkins-job-builder
+    - target: {{ pillar['jenkins']['job-builder-path'] }}
     - force: True
     - order: 1
 
 install_job_builder:
   cmd.run:
     - name: python setup.py install
-#   - cwd:  /home/user/jenkins-job-builder
+    - cwd:  {{ pillar['jenkins']['job-builder-path'] }}
     - order: 2
 
 /etc/jenkins_jobs/jenkins_jobs.ini:
