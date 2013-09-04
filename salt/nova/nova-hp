@@ -1,0 +1,10 @@
+export OS_PROJECT_ID={{ pillar['nova']['hp']['tenant'] }}
+export OS_AUTH_URL="https://region-a.geo-1.identity.hpcloudsvc.com:35357/v2.0/"
+export OS_USERNAME={{ pillar['nova']['hp']['user'] }}
+export OS_PASSWORD={{ pillar['nova']['hp']['password'] }}
+export OS_TENANT_NAME={{ pillar['nova']['hp']['tenant'] }}
+export OS_REGION_NAME="az-3.region-a.geo-1"
+export NOVA_VERSION="1.1"
+export OS_NO_CACHE=True
+unset OS_AUTH_SYSTEM
+

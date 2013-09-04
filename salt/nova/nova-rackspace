@@ -1,0 +1,8 @@
+export OS_AUTH_URL=https://identity.api.rackspacecloud.com/v2.0/
+export OS_AUTH_SYSTEM=rackspace
+export OS_REGION_NAME={{ pillar['nova']['rackspace']['region'] }}
+export OS_USERNAME={{ pillar['nova']['rackspace']['user'] }}
+export OS_TENANT_NAME={{ pillar['nova']['rackspace']['tenant'] }}
+export OS_PASSWORD={{ pillar['nova']['rackspace']['password'] }}
+export OS_PROJECT_ID={{ pillar['nova']['rackspace']['tenant'] }}
+export OS_NO_CACHE=1

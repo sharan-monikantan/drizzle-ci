@@ -1,5 +1,11 @@
 nova:
+  client: $CLIENT
   path: /root
-  user: $USERNAME
-  password: $API_KEY
-  tenant $TENANT_ID
+  rackspace:
+    user: $USERNAME
+    password: $API_KEY
+    tenant: $TENANT_ID
+  hp:
+    user: $USERNAME
+    password: $PASSWORD
+    tenant: $TENANT_ID
