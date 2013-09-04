@@ -10,20 +10,17 @@
 # state configuration
 # ===================
 
-file-server-base=/srv/salt
-file-server-dev=
-file-server-stage=
-file-server-prod=
+file-server-base="/srv/salt"
 
 # ====================
 # pillar configuration
 # ====================
 
-pillar-base=/srv/pillar
+pillar-base="/srv/pillar"
 
 # ===================
 # cloud configuration
 # ===================
 
-cloud-profile=/etc/salt/cloud.profiles.d
-cloud-provider=/etc/salt/cloud.providers.d
+cloud-profile="/etc/salt/cloud.profiles.d"
+cloud-provider="/etc/salt/cloud.providers.d"
