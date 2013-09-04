@@ -5,6 +5,7 @@ nova:
     user: $USERNAME
     password: $API_KEY
     tenant: $TENANT_ID
+    region: $REGION
   hp:
     user: $USERNAME
     password: $PASSWORD
