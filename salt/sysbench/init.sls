@@ -19,6 +19,10 @@ libmysqlclient-dev:
   pkg:
     - installed
 
+drizzle-dev:
+  pkg:
+    - installed
+
 mysqldb:
   cmd:
     - run
@@ -27,6 +31,7 @@ mysqldb:
       - cmd: easy_install
       - pkg: python-pip
       - pkg: libmysqlclient-dev
+      - pkg: drizzle-dev
 
 sysbench:
   pkg:
