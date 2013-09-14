@@ -36,12 +36,20 @@ if [ ! -d $PILLAR_BASE ]; then
     sudo mkdir $PILLAR_BASE
 fi
 
+if [ ! -d /etc/salt/cloud.providers.d ]; then
+    sudo mkdir /etc/salt/cloud.providers.d
+fi
+
+if [ ! -d /etc/salt/cloud.profiles.d ]; then
+    sudo mkdir /etc/salt/cloud.profiles.d
+fi
+
 # placeing the required files
 echo "populating directories..."
 sudo cp -r ./salt/* $STATE_BASE > /var/tmp/drizzle-ci-log 2>&1
 sudo cp -r ./pillar/* $PILLAR_BASE > /var/tmp/drizzle-ci-log 2>&1
-sudo cp -r ./cloud/cloud.providers.d $CLOUD_PROVIDERS > /var/tmp/drizzle-ci-log 2>&1
-sudo cp -r ./cloud/cloud.profiles.d $CLOUD_PROFILES > /var/tmp/drizzle-ci-log 2>&1
+sudo cp -r ./cloud/cloud.providers.d/$CLOUD_PROVIDER.conf /etc/salt/cloud.providers.d/ > /var/tmp/drizzle-ci-log 2>&1
+sudo cp -r ./cloud/cloud.profiles.d/$CLOUD_PROVIDER.conf /etc/salt/cloud.profiles.d/ > /var/tmp/drizzle-ci-log 2>&1
 
 if [ -s /var/tmp/drizzle-ci-log ];
 then
@@ -51,8 +59,6 @@ fi
 # Clearing variables
 unset STATE_BASE
 unset PILLAR_BASE
-unset CLOUD_PROVIDERS
-unset CLOUD_PROFILES
+unset CLOUD_PROVIDER
 
 echo "setup complete..."
-

@@ -31,6 +31,4 @@ export STATE_BASE="/srv/salt"
 export PILLAR_BASE="/srv/pillar"
 
 # cloud configuration
-export CLOUD_PROFILES="/etc/salt/cloud.profiles.d"
-export CLOUD_PROVIDERS="/etc/salt/cloud.providers.d"
-
+export CLOUD_PROVIDER="rackspace"
