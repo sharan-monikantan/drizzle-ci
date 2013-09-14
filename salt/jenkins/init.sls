@@ -17,30 +17,27 @@
 #    along with drizzle-ci.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# Installation for Ubuntu
 
-ubuntu_install_stage_1:
+
+fetch_source:
   cmd:
     - run
     - name: wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+    - order: 1
 
-ubuntu_install_stage_2:
+add_source:
   cmd:
     - run
     - name: sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
-    - require:
-      - cmd: ubuntu_install_stage_1
+    - order: 2
 
-ubuntu_install_stage_3:
+update_list:
   cmd:
     - run
     - name: sudo apt-get update
-    - require:
-      - cmd: ubuntu_install_stage_2
+    - order: 3
 
-ubuntu_install:
-  cmd:
-    - run
-    - name: sudo apt-get install jenkins
-    - require:
-      - cmd: ubuntu_install_stage_3
+jenkins:
+  pkg: 
+    - installed
+    - order: 4

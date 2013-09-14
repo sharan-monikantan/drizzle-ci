@@ -17,7 +17,7 @@
 #    along with drizzle-ci.  If not, see <http://www.gnu.org/licenses/>.
 
 
-#/home/user/sysbench_db.sql:
+/{{ pillar['users']['user'] }}/sysbench_db.sql:
   file:
     - managed
     - source: salt://sysbench/sysbench_db.sql
@@ -25,7 +25,7 @@
 sysbench_db:
   cmd:
     - run
-#   - name: drizzle -uroot < /home/user/sysbench_db.sql
+    - name: drizzle -uroot < /{{ pillar['users']['user'] }}/sysbench_db.sql
     - require:
-#     - file: /home/user/sysbench_db.sql
+      - file: /{{ pillar['users']['user'] }}/sysbench_db.sql
 

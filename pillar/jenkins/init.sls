@@ -17,7 +17,7 @@
 #    along with drizzle-ci.  If not, see <http://www.gnu.org/licenses/>.
 
 jenkins:
-  jenkins-path: /etc/jenkins
+  path: /etc/jenkins
   job-builder-path: /etc/jenkins/jenkins-job-builder
   config: /etc/jenkins/jenkins-job-builder/config
   output: /etc/jenkins/jenkins-job-builder/output
