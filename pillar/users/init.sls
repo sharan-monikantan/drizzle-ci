@@ -17,6 +17,5 @@
 #    along with drizzle-ci.  If not, see <http://www.gnu.org/licenses/>.
 
 users:
-  root: /root
-  user: /home/user
+  user: root
   key: ******root@localhost

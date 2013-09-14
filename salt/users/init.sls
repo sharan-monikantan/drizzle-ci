@@ -16,6 +16,11 @@
 #    You should have received a copy of the GNU General Public License
 #    along with drizzle-ci.  If not, see <http://www.gnu.org/licenses/>.
 
+/{{ pillar['users']['user'] }}/.ssh:
+  file.directory:
+    - user: {{ pillar['users']['user'] }}
+    - order: 1
+
 create_authorized_keys:
   file:
     - touch
