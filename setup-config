@@ -21,25 +21,16 @@
 #
 #
 #
-# This file contains configurations for
+# This file contains the environment variables for
 # salt states, pillars and cloud
 
-
-# ===================
 # state configuration
-# ===================
+export STATE_BASE="/srv/salt"
 
-file-server-base="/srv/salt"
-
-# ====================
 # pillar configuration
-# ====================
+export PILLAR_BASE="/srv/pillar"
 
-pillar-base="/srv/pillar"
-
-# ===================
 # cloud configuration
-# ===================
+export CLOUD_PROFILES="/etc/salt/cloud.profiles.d"
+export CLOUD_PROVIDERS="/etc/salt/cloud.providers.d"
 
-cloud-profile="/etc/salt/cloud.profiles.d"
-cloud-provider="/etc/salt/cloud.providers.d"

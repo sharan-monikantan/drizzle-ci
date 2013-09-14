@@ -17,45 +17,36 @@
 #    You should have received a copy of the GNU General Public License
 #    along with drizzle-ci.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
-# the setup script for setting up the drizzle-ci
+# Setup script for drizzle-ci
 
 echo "Starting setup..."
 
-# Declaring the required env vars
-set STATE_BASE
-set PILLAR_BASE
-set CLOUD_PROVIDERS
-set CLOUD_PROFILES
+# setting up path variables
+echo "Setting environment variables..."
+source setup-config
 
-# Function to read config file and setup the env vars
-read_config()
-{
-    count=0
-    while read param
-    do
-        string= echo $param | grep =
-        if [ $string = ""]; then
-            continue
-        fi
-        ENV_VAR[$count]= echo $param | cut -d = -f2
-        (( count++ ))
-    done < setup-config
-
-    STATE_BASE= ${ENV_VAR[0]}
-    PILLAR_BASE= ${ENV_VAR[1]}
-    CLOUD_PROVIDERS= ${ENV_VAR[2]}
-    CLOUD_PROFILES= ${ENV_VAR[3]}    
-}
-
-echo "Reading config file..."
-read_config
-
+# creating the directories
 echo "setting up directories..."
-sudo cp -r ./salt $SALT_BASE 
-sudo cp -r ./pillar $PILLAR_BASE
-sudo cp -r ./cloud/cloud.providers.d $CLOUD_PROVIDERS
-sudo cp -r ./cloud/cloud.profiles.d $CLOUD_PROFILES
+
+if [ ! -d $STATE_BASE ]; then
+    sudo mkdir $STATE_BASE
+fi
+
+if [ ! -d $PILLAR_BASE ]; then
+    sudo mkdir $PILLAR_BASE
+fi
+
+# placeing the required files
+echo "populating directories..."
+sudo cp -r ./salt/* $STATE_BASE > /var/tmp/drizzle-ci-log 2>&1
+sudo cp -r ./pillar/* $PILLAR_BASE > /var/tmp/drizzle-ci-log 2>&1
+sudo cp -r ./cloud/cloud.providers.d $CLOUD_PROVIDERS > /var/tmp/drizzle-ci-log 2>&1
+sudo cp -r ./cloud/cloud.profiles.d $CLOUD_PROFILES > /var/tmp/drizzle-ci-log 2>&1
+
+if [ -s /var/tmp/drizzle-ci-log ];
+then
+echo "THERE SEEMS TO BE SOME ERROR / WARNING. CHECK OUT THE LOG FILE"
+fi
 
 # Clearing variables
 unset STATE_BASE
@@ -64,3 +55,4 @@ unset CLOUD_PROVIDERS
 unset CLOUD_PROFILES
 
 echo "setup complete..."
+
