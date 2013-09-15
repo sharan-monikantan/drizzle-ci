@@ -16,12 +16,12 @@
 #    You should have received a copy of the GNU General Public License
 #    along with drizzle-ci.  If not, see <http://www.gnu.org/licenses/>.
 
-pytohn-pip:
+python-pip:
   pkg:
     - installed
     - order: 1
 
-rackspace-novaclient:
+python-novaclient:
   pkg:
     - installed
     - order: 2

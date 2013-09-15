@@ -20,10 +20,15 @@ salt_add_key:
   cmd:
     - run
     - name: echo deb http://ppa.launchpad.net/saltstack/salt/ubuntu `lsb_release -sc` main | sudo tee /etc/apt/sources.list.d/saltstack.list ; wget -q -O- "http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x4759FA960E27C0A6" | sudo apt-key add - ; sudo apt-get update ; 
+    - order: 1
 
-salt_install:
-  cmd:
-    - run
-    - name: sudo apt-get install salt-master ; sudo apt-get install salt-minion ; sudo apt-get install salt-syndic
-    - require:
-      - cmd: salt_add_key
+salt-minion:
+  pkg:
+    - installed
+    - order: 2
+
+/etc/salt/minion:
+  file.managed:
+    - source: salt://salt/minion
+    - template: jinja
+    - order: 3
