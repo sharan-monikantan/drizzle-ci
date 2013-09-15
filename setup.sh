@@ -20,6 +20,11 @@
 # Setup script for drizzle-ci
 
 echo "Starting setup..."
+if [ -f /var/tmp/drizzle-ci-log ];
+then
+    sudo rm /var/tmp/drizzle-ci-log
+    sudo touch /var/tmp/drizzle-ci-log
+fi
 
 # setting up path variables
 echo "Setting environment variables..."
@@ -46,10 +51,10 @@ fi
 
 # placeing the required files
 echo "populating directories..."
-sudo cp -r ./salt/* $STATE_BASE > /var/tmp/drizzle-ci-log 2>&1
-sudo cp -r ./pillar/* $PILLAR_BASE > /var/tmp/drizzle-ci-log 2>&1
-sudo cp -r ./cloud/cloud.providers.d/$CLOUD_PROVIDER.conf /etc/salt/cloud.providers.d/ > /var/tmp/drizzle-ci-log 2>&1
-sudo cp -r ./cloud/cloud.profiles.d/$CLOUD_PROVIDER.conf /etc/salt/cloud.profiles.d/ > /var/tmp/drizzle-ci-log 2>&1
+sudo cp -r ./salt/* $STATE_BASE >> /var/tmp/drizzle-ci-log 2>&1
+sudo cp -r ./pillar/* $PILLAR_BASE >> /var/tmp/drizzle-ci-log 2>&1
+sudo cp -r ./cloud/cloud.providers.d/$CLOUD_PROVIDER.conf /etc/salt/cloud.providers.d/ >> /var/tmp/drizzle-ci-log 2>&1
+sudo cp -r ./cloud/cloud.profiles.d/$CLOUD_PROVIDER.conf /etc/salt/cloud.profiles.d/ >> /var/tmp/drizzle-ci-log 2>&1
 
 if [ -s /var/tmp/drizzle-ci-log ];
 then
@@ -61,4 +66,5 @@ unset STATE_BASE
 unset PILLAR_BASE
 unset CLOUD_PROVIDER
 
-echo "setup complete..."
+sudo salt $1 state.highstate >> /var/tmp/drizzle-ci-log
+echo "setup complete... To know more, check out the log file"

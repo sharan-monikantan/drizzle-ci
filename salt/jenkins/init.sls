@@ -41,3 +41,23 @@ jenkins:
   pkg: 
     - installed
     - order: 4
+
+{{ pillar['jenkins']['path'] }}/jenkins_jobs.ini:
+  file.managed:
+    - source: salt://jenkins/jenkins_jobs.ini
+    - template: jinja
+    - order: 5
+
+git_repo:
+  git.latest:
+    - cwd: {{ pillar['jenkins']['path'] }}
+    - name: https://github.com/openstack-infra/jenkins-job-builder.git
+    - target: {{ pillar['jenkins']['path'] }}
+    - force: True
+    - order: 6
+
+install_jenkins_jobs:
+  cmd.run:
+    - name: python setup.py install
+    - cwd: {{ pillar['jenkins']['path'] }}
+    - order: 7
