@@ -19,3 +19,14 @@
 drizzle:
   pkg:
     - installed
+
+/{{ pillar['users']['user'] }}/sysbench_db.sql:
+  file.managed:
+    - source: salt://sysbench/sysbench_db.sql
+
+sysbench_db:
+  cmd:
+    - run
+    - name: drizzle -uroot < /{{ pillar['users']['user'] }}/sysbench_db.sql
+    - require:
+      - file: /{{ pillar['users']['user'] }}/sysbench_db.sql

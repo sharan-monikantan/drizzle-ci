@@ -32,11 +32,11 @@ libraries:
 source:
   cmd:
     - run
-#   - name: bzr branch lp:drizzle /home/user/drizzle drizzle-trunk
+    - name: bzr branch lp:drizzle /{{ pillar['users']['user'] }}/drizzle
     - order: 2
 
 compile:
   cmd:
     - run
-#   - name: cd /home/user/drizzle ; ./config/autorun.sh ; ./configure ; make
+    - name: cd /{{ pillar['users']['user'] }}/drizzle ; ./config/autorun.sh ; ./configure ; make
     - order: 3
