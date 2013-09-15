@@ -1,7 +1,7 @@
 base:
   '*':
+    - cloud
     - drizzle
     - jenkins
-    - nova
     - salt
     - users

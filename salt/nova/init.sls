@@ -26,7 +26,7 @@ python-novaclient:
     - installed
     - order: 2
 
-{{ pillar['nova']['path'] }}/nova-{{ pillar['nova']['client'] }}:
+{{ pillar['cloud']['path'] }}/nova-{{ pillar['cloud']['client'] }}:
   file.managed:
-    - source: salt://nova/nova-{{ pillar['nova']['client'] }}
+    - source: salt://nova/nova-{{ pillar['cloud']['client'] }}
     - template: jinja

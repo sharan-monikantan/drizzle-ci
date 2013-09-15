@@ -25,10 +25,10 @@ then
     sudo rm /var/tmp/drizzle-ci-log
     sudo touch /var/tmp/drizzle-ci-log
 fi
+source ./util/config
 
 # setting up path variables
 echo "Setting environment variables..."
-source setup-config
 
 # creating the directories
 echo "setting up directories..."
@@ -41,30 +41,24 @@ if [ ! -d $PILLAR_BASE ]; then
     sudo mkdir $PILLAR_BASE
 fi
 
-if [ ! -d /etc/salt/cloud.providers.d ]; then
-    sudo mkdir /etc/salt/cloud.providers.d
+if [ ! -d $CLOUD_PROVIDER ]; then
+    sudo mkdir $CLOUD_PROVIDER
 fi
 
-if [ ! -d /etc/salt/cloud.profiles.d ]; then
-    sudo mkdir /etc/salt/cloud.profiles.d
+if [ ! -d $CLOUD_PROFILE ]; then
+    sudo mkdir $CLOUD_PROFILE
 fi
 
 # placeing the required files
 echo "populating directories..."
 sudo cp -r ./salt/* $STATE_BASE >> /var/tmp/drizzle-ci-log 2>&1
 sudo cp -r ./pillar/* $PILLAR_BASE >> /var/tmp/drizzle-ci-log 2>&1
-sudo cp -r ./cloud/cloud.providers.d/$CLOUD_PROVIDER.conf /etc/salt/cloud.providers.d/ >> /var/tmp/drizzle-ci-log 2>&1
-sudo cp -r ./cloud/cloud.profiles.d/$CLOUD_PROVIDER.conf /etc/salt/cloud.profiles.d/ >> /var/tmp/drizzle-ci-log 2>&1
+sudo cp -r ./cloud/cloud.providers.d/$1.conf $CLOUD_PROVIDER >> /var/tmp/drizzle-ci-log 2>&1
+sudo cp -r ./cloud/cloud.profiles.d/$1.conf $CLOUD_PROFILE >> /var/tmp/drizzle-ci-log 2>&1
 
 if [ -s /var/tmp/drizzle-ci-log ];
 then
 echo "THERE SEEMS TO BE SOME ERROR / WARNING. CHECK OUT THE LOG FILE"
 fi
 
-# Clearing variables
-unset STATE_BASE
-unset PILLAR_BASE
-unset CLOUD_PROVIDER
-
-sudo salt $1 state.highstate >> /var/tmp/drizzle-ci-log
 echo "setup complete... To know more, check out the log file"

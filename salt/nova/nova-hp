@@ -16,11 +16,11 @@
 #    You should have received a copy of the GNU General Public License
 #    along with drizzle-ci.  If not, see <http://www.gnu.org/licenses/>.
 
-export OS_PROJECT_ID={{ pillar['nova']['hp']['tenant'] }}
+export OS_PROJECT_ID={{ pillar['cloud']['hp']['tenant'] }}
 export OS_AUTH_URL="https://region-a.geo-1.identity.hpcloudsvc.com:35357/v2.0/"
-export OS_USERNAME={{ pillar['nova']['hp']['user'] }}
-export OS_PASSWORD={{ pillar['nova']['hp']['password'] }}
-export OS_TENANT_NAME={{ pillar['nova']['hp']['tenant'] }}
+export OS_USERNAME={{ pillar['cloud']['hp']['user'] }}
+export OS_PASSWORD={{ pillar['cloud']['hp']['password'] }}
+export OS_TENANT_NAME={{ pillar['cloud']['hp']['tenant'] }}
 export OS_REGION_NAME="az-3.region-a.geo-1"
 export NOVA_VERSION="1.1"
 export OS_NO_CACHE=True
