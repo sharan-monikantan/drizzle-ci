@@ -33,3 +33,6 @@ export PILLAR_BASE="/srv/pillar"
 # cloud configuration
 export CLOUD_PROVIDER="/etc/salt/cloud.providers.d"
 export CLOUD_PROFILE="/etc/salt/cloud.profiles.d"
+
+# drizzle-ci HOME
+export CI_HOME=""

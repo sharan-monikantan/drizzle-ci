@@ -18,4 +18,4 @@
 
 users:
   user: root
-  key: ******root@localhost
+  key: $PUBLIC_KEY
