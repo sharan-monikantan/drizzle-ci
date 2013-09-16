@@ -41,11 +41,15 @@
         </p>
         <p>First we need to clone the repository and setup the environment:</p>
         <p>
-          <h3>Clone the repository</h3>
-          <i>git clone https://github.com/sharan-monikantan/drizzle-ci.git</i>
+          <h3>Fetch the repository</h3>
+          <ul>
+	  <li>Clone the repository using git clone https://github.com/sharan-monikantan/drizzle-ci.git</li>
+	  <li>Download the tarball available for download here</li>
+	  </ul>
+	     
         </p>
         <p>
-          <h2>Setup</h2>
+          <h3>Setup</h3>
           The drizzle-ci/setup directory contains a config file. This file contains a few configurations that must be set prior setup. The config file contains some default values and users can leave those defaults as such. The <b>CI_HOME</b> variable should be set without fail. This CI_HOME is the location where the drizzle-ci repository lies in the local machine. For example, if drizzle-ci repository lies in /home/foo, then /home/foo/drizzle-ci is the value for CI_HOME. Once all variables are set, then perform <b>source /setup/config</b>
           
           The next step is to setup the state file and pillar data in respecitive paths : <b>sudo -E ./setup.sh</b> That does pretty much all the work to setup the files. The log file for setup resides in the CI_HOME path as <b>.drizzle-ci-log</b>
