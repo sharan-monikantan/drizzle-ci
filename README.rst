@@ -1,1 +1,8 @@
-drizzle-ci repository contains the essentials to set up the CI system for Drizzle. It includes the necessary state files to create nodes, configure those, run tests and blow the nodes away.
+**The DrizzleCI Infrastrucutre**
+
+The drizzle-ci repository contains the essentials to setup the Continuous Integration system. This infrastructure provides the following advantages:
+
+- Relieves the cost of maintaining permanent servers
+- Creates test servers on demand
+- Provides parallelism
+- Served with automation
