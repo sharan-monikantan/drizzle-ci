@@ -32,12 +32,46 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <p>The drizzle-ci repository contains the essentials to setup the Continuous Integration system. This infrastructure provides the following advantages:
+          <ul>
+            <li>Relieves the cost of maintaining permanent servers</li>
+            <li>Creates test servers on demand</li>
+            <li>Provides parallelism</li>
+            <li>Served with automation</li>
+          </ul>
+        </p>
+        <p>First we need to clone the repository and setup the environment:</p>
+        <p>
+          <h3>Clone the repository</h3>
+          <i>git clone https://github.com/sharan-monikantan/drizzle-ci.git</i>
+        </p>
+        <p>
+          <h2>Setup</h2>
+          The drizzle-ci/setup directory contains a config file. This file contains a few configurations that must be set prior setup. The config file contains some default values and users can leave those defaults as such. The <b>CI_HOME</b> variable should be set without fail. This CI_HOME is the location where the drizzle-ci repository lies in the local machine. For example, if drizzle-ci repository lies in /home/foo, then /home/foo/drizzle-ci is the value for CI_HOME. Once all variables are set, then perform <b>source /setup/config</b>
+          
+          The next step is to setup the state file and pillar data in respecitive paths : <b>sudo -E ./setup.sh</b> That does pretty much all the work to setup the files. The log file for setup resides in the CI_HOME path as <b>.drizzle-ci-log</b>
 
-Relieves the cost of maintaining permanent servers
-Creates test servers on demand
-Provides parallelism
-Served with automation
-First we need to clone the repository and setup the environment:</p>
+          Once setup is complete the pillar data for the following modules should be filled in:
+	  <ul>
+          <li>cloud</li>
+	  <li>salt : master-ip-address</li>
+	  <li>jenkins</li>
+	  <li>users</li>
+	  </ul>
+       	</p>
+
+        <p>
+	Now the users have two choices:
+	<ol>
+        <li>use salt-cloud for creating nodes: This creates a node, installs salt-minion on it, and adds its key in the master.</li>
+	<li>use nova for spinning up nodes: Needs explicit installation of salt-minion on the nodes.</li>
+	</ol>
+	</p>
+
+  	<p>If salt-cloud is your call, then run the cloud.sh script. <b>sudo -E ./cloud.sh MASTER_ID</b>, where MASTER_ID is the name of master node. This has to be passed explicitly as an argument to the script. Usually it is the same as $HOSTNAME. This should setup the provider configuration files and profile configuration files specific to your client ( eg, rackspace ), which is set in the cloud pillar data. And before spinning up cloud nodes via salt-cloud, salt-cloud itself has to be installed : <b>pip install git+https://github.com/saltstack/salt-cloud.git#egg=salt_cloud</b></p>
+
+    	<p>If nova is your choice, then run nova.sh with <b>sudo -E ./nova.sh MASTER_ID</b>. This will setup python-novaclient on the master. Then run the salt.sh with <b>sudo -E ./salt.sh</b>. This should install salt on all the created nodes.</p>
+
+	<p>Once setup is complete, all that you have to do is one last thing. <b>sudo salt \* state.highstate</b> and it takes care of the magical work of setting up all nodes to required state. And CI system is ready to use!</p>
       </section>
     </div>
 
