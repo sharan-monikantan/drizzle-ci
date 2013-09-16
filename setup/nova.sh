@@ -17,11 +17,13 @@
 #    You should have received a copy of the GNU General Public License
 #    along with drizzle-ci.  If not, see <http://www.gnu.org/licenses/>.
 
+source $CI_HOME/setup/config
+
 # backing up the top file
 sudo cp $STATE_BASE/top.sls $STATE_BASE/top.sls.bak
 
 # installing nova
-sudo cp ./util/nova.sls $STATE_BASE/top.sls
+sudo cp $CI_HOME/setup/nova.sls $STATE_BASE/top.sls
 sudo salt $1 state.highstate
 
 # restoring state system

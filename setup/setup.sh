@@ -25,7 +25,15 @@ then
     sudo rm /var/tmp/drizzle-ci-log
     sudo touch /var/tmp/drizzle-ci-log
 fi
-source ./util/config
+
+if [ "$CI_HOME" = ""];
+then
+    echo "ENVIRONMENT VARIABLE NOT SET"
+    echo "READ THE DOCUMENTATION FOR THE ERROR"
+    exit 0
+fi
+
+source $CI_HOME/setup/config
 
 # setting up path variables
 echo "Setting environment variables..."

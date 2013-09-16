@@ -17,13 +17,13 @@
 #    You should have received a copy of the GNU General Public License
 #    along with drizzle-ci.  If not, see <http://www.gnu.org/licenses/>.
 
-source config
+source $CI_HOME/setup/config
 
 # backing up the top file
 sudo cp $STATE_BASE/top.sls $STATE_BASE/top.sls.bak
 
 # setting up cloud profiles
-sudo cp ./util/cloud.sls $STATE_BASE/top.sls
+sudo cp $CI_HOME/setup/cloud.sls $STATE_BASE/top.sls
 sudo salt $1 state.highstate
 
 # restoring state system
