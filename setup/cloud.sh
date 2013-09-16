@@ -17,8 +17,6 @@
 #    You should have received a copy of the GNU General Public License
 #    along with drizzle-ci.  If not, see <http://www.gnu.org/licenses/>.
 
-source $CI_HOME/setup/config
-
 # backing up the top file
 sudo cp $STATE_BASE/top.sls $STATE_BASE/top.sls.bak
 

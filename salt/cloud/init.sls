@@ -25,3 +25,15 @@
   file.managed:
     - source: salt://cloud/providers/{{ pillar['cloud']['client'] }}.conf
     - template: jinja
+
+python-libcloud:
+  pkg:
+    - installed
+
+git:
+  pkg:
+    - installed
+
+python-pip:
+  pkg:
+    - installed

@@ -26,14 +26,12 @@ then
     sudo touch /var/tmp/drizzle-ci-log
 fi
 
-if [ "$CI_HOME" = ""];
+if [ "$CI_HOME" = "" ];
 then
     echo "ENVIRONMENT VARIABLE NOT SET"
     echo "READ THE DOCUMENTATION FOR THE ERROR"
     exit 0
 fi
-
-source $CI_HOME/setup/config
 
 # setting up path variables
 echo "Setting environment variables..."
@@ -59,14 +57,12 @@ fi
 
 # placeing the required files
 echo "populating directories..."
-sudo cp -r ./salt/* $STATE_BASE >> /var/tmp/drizzle-ci-log 2>&1
-sudo cp -r ./pillar/* $PILLAR_BASE >> /var/tmp/drizzle-ci-log 2>&1
-sudo cp -r ./cloud/cloud.providers.d/$1.conf $CLOUD_PROVIDER >> /var/tmp/drizzle-ci-log 2>&1
-sudo cp -r ./cloud/cloud.profiles.d/$1.conf $CLOUD_PROFILE >> /var/tmp/drizzle-ci-log 2>&1
+sudo cp -r ./salt/* $STATE_BASE >> $CI_HOME/.drizzle-ci-log 2>&1
+sudo cp -r ./pillar/* $PILLAR_BASE >> $CI_HOME/.drizzle-ci-log 2>&1
 
-if [ -s /var/tmp/drizzle-ci-log ];
+if [ -s $CI_HOME/.drizzle-ci-log ];
 then
-echo "THERE SEEMS TO BE SOME ERROR / WARNING. CHECK OUT THE LOG FILE"
+    echo "THERE SEEMS TO BE SOME ERROR / WARNING. CHECK OUT THE LOG FILE"
 fi
 
 echo "setup complete... To know more, check out the log file"
